@@ -1,0 +1,20 @@
+const express = require('express');
+const Donate = require('../models/donate.model');
+
+const router = express.Router();
+
+router.post('/', (req, res) => {
+  const donation = Donate.create(
+    req.body.amount,
+    req.body.donorName,
+    req.body.donorEmail,
+    req.body.donorAddress,
+    new Date()
+  );
+
+  // Save the donation to the database
+
+  res.status(201).json(donation);
+});
+
+module.exports = router;
